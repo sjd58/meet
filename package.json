@@ -2,6 +2,7 @@
   "name": "meet",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sjd58.github.io/meet"
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^11.2.7",
@@ -46,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
