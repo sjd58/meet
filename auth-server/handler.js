@@ -48,7 +48,7 @@ module.exports.getAccessToken = async (event) => {
     redirect_uris[0]
   );
   // Decode authorization code extracted from the URL query
-  const code = decodeURIComponent(`${event.pathParameters.code}`);
+  const code = event.pathParameters ? decodeURIComponent(`${event.pathParameters.code}`) : ''
 
   return new Promise((resolve, reject) => {
     oAuth2Client.getToken(code, (err, token) => {
