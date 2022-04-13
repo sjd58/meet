@@ -25,7 +25,6 @@
       <button id="getURL">Get OAuth URL</button>
       <p id="result"></p>
       <a id="authURL" href target="_blank">Click to authorize</a>
-      <!-- STEP 2 -- MAKE SURE STEP 1 WORKS BEFORE MOVING ON-->
 
       <h4>Step 2: Get your code and exchange for an access token</h4>
       <p>
@@ -39,8 +38,7 @@
       </label>
       <button id="getToken">Get Token</button>
       <p id="accessToken"></p>
-      
-      <!-- STEP 3 -->
+
       <h4>Step 3: Get the calendar events using your access token</h4>
       <button id="getEvents">Get Events</button>
       <p id="events"></p>
@@ -50,7 +48,6 @@
       const getURLElement = document.getElementById("getURL");
       const resultElement = document.getElementById("result");
       const resultLink = document.getElementById("authURL");
-      // Replace this with your own endpoint
       const getAuthURL =
         "https://jybqsozlq6.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url";
 
@@ -61,9 +58,7 @@
           })
           .then(function (json) {
             const result = JSON.stringify(json);
-            // we get the value of authUrl
             const { authUrl } = JSON.parse(result);
-            // then add it to the html
             resultElement.innerText = result;
             resultLink.href = authUrl;
           });
@@ -77,7 +72,6 @@
       getAccessToken.onclick = function () {
         let code = codeValue.value;
 
-        // if the authorization code is not URL-encoded, then URL-encode it.
         if (decodeURIComponent(code) === code) {
           code = encodeURIComponent(codeValue.value);
         }
@@ -91,7 +85,6 @@
           });
       };
 
-      //STEP 3
       const getEvents = document.getElementById("getEvents");
       const events = document.getElementById("events");
       const getCalendarEvents = "https://jybqsozlq6.execute-api.us-east-1.amazonaws.com/dev/api/get-events";
