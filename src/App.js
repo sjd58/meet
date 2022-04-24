@@ -26,16 +26,6 @@ class App extends Component {
     this.mounted = false;
   }
 
-  //updated for 4.4 task
-  updateNumberOfEvents = (numberOfEvents) => {
-    this.setState(
-      {
-        numberOfEvents,
-      },
-      this.updateEvents(this.state.locations, numberOfEvents)
-    );
-  };
-
   /* updateEvents = (location) => {
     getEvents().then((events) =>{
       const locationEvents = (location === 'all') ? 
@@ -60,6 +50,15 @@ class App extends Component {
         });
       }
     });
+  };
+
+  updateNumberOfEvents = (numberOfEvents) => {
+    this.setState(
+      {
+        numberOfEvents,
+      },
+      this.updateEvents(this.state.locations, numberOfEvents)
+    );
   };
 
   render() {
