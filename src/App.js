@@ -32,7 +32,7 @@ class App extends Component {
       {
         numberOfEvents,
       },
-      this.UpdateEvents(this.state.locations, numberOfEvents)
+      this.updateEvents(this.state.locations, numberOfEvents)
     );
   };
 
