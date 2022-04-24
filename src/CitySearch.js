@@ -7,7 +7,7 @@ class CitySearch extends Component {
     showSuggestions: undefined
   }
 
-  handleInputChanged = (event) => {
+  handleCitySearchChange = (event) => {
     const value = event.target.value;
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
@@ -34,7 +34,7 @@ class CitySearch extends Component {
         type="text"
         className="city"
         value={this.state.query}
-        onChange={this.handleInputChanged}
+        onChange={this.handleCitySearchChange}
         onFocus={() => { this.setState({ showSuggestions: true}) }}
         />
         <ul className="suggestions" style={this.state.showSuggestions ? {}: {display: 'none'}}>
