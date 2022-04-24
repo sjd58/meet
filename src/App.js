@@ -10,7 +10,7 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: 32,
+    numberOfEvents: 32
   }
   
   componentDidMount() {
@@ -49,7 +49,7 @@ class App extends Component {
 
   updateEvents = (location, eventCount) => {
     getEvents().then((events) => {
-      const locationEvents = location === "all"
+      const locationEvents = (location === "all")
         ? events
         : events.filter((event) => event.location === location);
       if (this.mounted) {
