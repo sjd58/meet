@@ -10,15 +10,16 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: 32
-  }
+    numberOfEvents: 32,
+    currentLocation: "all",
+  };
   
   componentDidMount() {
-    this.mounted = true;
     getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
-      }
+      this.setState({
+        events: events.slice(0, this.state.numberOfEvents),
+        location: extractLocations(events),
+      });
     });
   }
 
@@ -26,39 +27,33 @@ class App extends Component {
     this.mounted = false;
   }
 
-  /* updateEvents = (location) => {
-    getEvents().then((events) =>{
-      const locationEvents = (location === 'all') ? 
-        events :
-        events.filter((event) => event.location === location);
-      this.setState({
-        events: locationEvents
-      });
-    });
-  }*/
-
   updateEvents = (location, eventCount) => {
-    getEvents().then((events) => {
-      const locationEvents = (location === "all")
-        ? events
-        : events.filter((event) => event.location === location);
-      if (this.mounted) {
+    const { currentLocation, numberOfEvents } = this.state;
+    if (location) {
+      getEvents().then((events) => {
+        const locationEvents =
+          location === "all"
+            ? events
+            : events.filter((event) => event.location === location);
+        const filteredEvents = locationEvents.slice(0, numberOfEvents);
         this.setState({
-          events: locationEvents.slice(0, this.state.numberOfEvents),
+          events: filteredEvents,
           currentLocation: location,
-          numberOfEvents: eventCount
         });
-      }
-    });
-  };
-
-  updateNumberOfEvents = (numberOfEvents) => {
-    this.setState(
-      {
-        numberOfEvents,
-      },
-      this.updateEvents(this.state.locations, numberOfEvents)
-    );
+      });
+    } else {
+      getEvents.apply().then((events) => {
+        const locationEvents =
+          currentLocation === "all"
+            ? events
+            : events.filter((event) => event.location === currentLocation);
+        const filteredEvents = locationEvents.slice(0, eventCount);
+        this.setState({
+          events: filteredEvents,
+          numberOfEvents: eventCount,
+        });
+      });
+    }
   };
 
   render() {
@@ -68,12 +63,12 @@ class App extends Component {
           locations={this.state.locations}
           updateEvents={this.updateEvents}
         />
+        <NumberOfEvents
+          numberOfEvents={this.state.numberOfEvents}
+          updateEvents={this.updateEvents} 
+        />
         <EventList 
           events={this.state.events} 
-        />
-        <NumberOfEvents 
-          updateNumberOfEvents={this.updateNumberOfEvents}
-          numberOfEvents={this.state.numberOfEvents}
         />
       </div>
     );
