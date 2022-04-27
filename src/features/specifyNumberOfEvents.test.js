@@ -7,23 +7,24 @@ import NumberOfEvents from '../NumberOfEvents';
 const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 
 defineFeature(feature, test => {
-  let AppWrapper;
 
   test('When user hasn\'t specified a number, 32 is the default number', ({ given, when, then }) => {
+    let AppWrapper;
     given('the app presents evens relevant to the user', async () => {
-      AppWrapper =  mount(<App />);
+      AppWrapper = mount(<App />);
     });
 
     when('the user does not specify the number of events to display', () => {
-
+      
     });
 
     then('the app will display 32 events', () => {
-      expect(AppWrapper.state('numberofEvents')).toEqual(32);
+      expect(AppWrapper.state('numberofEvents')).toBe(32);
     });
   });
 
   test('User can change the number of events they want to see', ({ given, when, then}) => {
+    let AppWrapper;
     given('the app presents events relevant to the user', () => {
       AppWrapper = mount(<App />);
     });
