@@ -6,6 +6,6 @@ When the user does not specify the number of events to display
 Then the app will display 32 events
 
 Scenario: User can change the number of events they want to see
-Given the app presents evens relevant to the user
+Given the app presents events relevant to the user
 When the user wants to only see a certain number
 Then the app will display that number of events
