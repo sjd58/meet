@@ -28,7 +28,7 @@ defineFeature(feature, test => {
       AppWrapper = mount(<App />);
     });
 
-    when('the user has selected a specific number of events to display', async () => {
+    when('the user wants to only see a certain number', async () => {
       const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents)
       NumberOfEventsWrapper.find('.number-of-events').simulate('change', { target: {value: 1} });
     });
