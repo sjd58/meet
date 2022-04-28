@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
+import { OfflineAlert } from './Alert';
 import Event from './Event';
 
 class EventList extends Component {
   render() {
     const { events } = this.props;
     return (
-      <ul className="EventList">
-        {events.map(event =>
-          <li key={event.id}>
-            <Event event={event} />
-          </li>  
+      <div>
+        {!navigator.onLine ? (
+          <OfflineAlert text="Heads up, you are offline! You're looking at cached data." />
+        ) : (
+          ""
         )}
-      </ul>
+        <ul className="EventList">
+          {events.map(event =>
+            <li key={event.id}>
+              <Event event={event} />
+            </li>  
+          )}
+        </ul>
+      </div>
     );
   }
 }
