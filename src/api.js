@@ -29,8 +29,6 @@ export const getEvents = async () => {
     return mockData;
   }
 
-  const token = await getAccessToken();
-
   const removeQuery = () => {
     if (window.history.pushState && window.location.pathname) {
       var newurl = 
@@ -44,6 +42,14 @@ export const getEvents = async () => {
       window.history.pushState("", "", newurl);
     }
   };
+
+  if (!navigator.onLine) {
+    const data = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return data?JSON.parse(data).events:[];;
+  }
+
+  const token = await getAccessToken();
 
   if (token) {
     removeQuery();
