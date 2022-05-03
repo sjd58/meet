@@ -19,7 +19,8 @@ defineFeature(feature, test => {
     });
 
     then('the app will display 32 events', () => {
-      expect(AppWrapper.state('numberofEvents')).toBe(32);
+      AppWrapper.setState({ numberOfEvents: 32 });
+      expect(AppWrapper.state('numberofEvents')).toEqual(32);
     });
   });
 
