@@ -29,11 +29,11 @@ defineFeature(feature, test => {
     when('the user selects an event', async () => {
       AppWrapper.update();
       let Event = AppWrapper.find('.event');
-      Event.find('.displayMore').at(0).simulate('click');
+      Event.find('.details-button.show-details').at(0).simulate('click');
     });
 
     then('the selected event will expand to display more details', () => {
-      const EventDescription = AppWrapper.find('.event .EventDescription') //check className to make sure it matches
+      const EventDescription = AppWrapper.find('.event .details-button.show-details')
       expect(EventDescription).toHaveLength(1);
     });
   });
@@ -43,17 +43,17 @@ defineFeature(feature, test => {
       AppWrapper = mount(<App />);
       AppWrapper.update();
       let Event = AppWrapper.find('.event');
-      Event.find('.extra-details').at(0).simulate('click');
+      Event.find('.details-button.show-details').at(0).simulate('click');
     });
 
     when('the user selects the display less button', () => {
       AppWrapper.update();
       let Event = AppWrapper.find('.event');
-      Event.find('.details-button').at(0).simulate('click');
+      Event.find('.details-button.hide-details').at(0).simulate('click');
     });
 
     then('the selected event will cease to display the event description', () => {
-      const extraDetails = AppWrapper.find('.event .extra-details');
+      const extraDetails = AppWrapper.find('.event .details-button.hide-details');
       expect(extraDetails).toHaveLength(0);
     });
   });
