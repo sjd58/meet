@@ -1,7 +1,7 @@
 import React from "react";
 import './WelcomeScreen.css';
 
-function WelcomeScreen(props) {
+/*function WelcomeScreen(props) {
   return props.showWelcomeScreen ? 
     (
 
@@ -9,4 +9,4 @@ function WelcomeScreen(props) {
   : null
 }
 
-export default WelcomeScreen
+export default WelcomeScreen */
