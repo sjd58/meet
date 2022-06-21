@@ -39,17 +39,15 @@ defineFeature(feature, test => {
   });
 
   test('User can collapse an event to hide its details', ({ given, when, then }) => {
-    given('the app has displayed extra details for a particular event', () => {
-      AppWrapper = mount(<App />);
+    given('The app has displayed extra details for a particular event', async () => {
+      AppWrapper = await mount(<App />);
       AppWrapper.update();
-      let Event = AppWrapper.find('.event');
-      Event.find('.details-button.show-details').at(0).simulate('click');
+      AppWrapper.find('.event .details-button.show-details').at(0).simulate('click');
     });
 
     when('the user selects the display less button', () => {
-      AppWrapper.update();
       let Event = AppWrapper.find('.event');
-      Event.find('.details-button.hide-details').at(0).simulate('click');
+      Event.find('.details-button').at(0).simulate('click');
     });
 
     then('the selected event will cease to display the event description', () => {

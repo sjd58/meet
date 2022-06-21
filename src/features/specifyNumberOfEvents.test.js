@@ -11,16 +11,15 @@ defineFeature(feature, test => {
   test('When user hasn\'t specified a number, 32 is the default number', ({ given, when, then }) => {
     let AppWrapper;
     given('the app presents evens relevant to the user', async () => {
-      AppWrapper = mount(<App />);
+      AppWrapper = await mount(<App />);
     });
 
     when('the user does not specify the number of events to display', () => {
-      
+      AppWrapper.update();
     });
 
-    then('the app will display 32 events', () => {
-      AppWrapper.setState({ numberOfEvents: 32 });
-      expect(AppWrapper.state('numberofEvents')).toEqual(32);
+    then('the app will display 32 events by default, length of 2 for the local test', () => {
+      expect(AppWrapper.find('.event')).toHaveLength(2);
     });
   });
 
